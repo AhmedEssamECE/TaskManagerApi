@@ -15,3 +15,5 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/v1/tasks", taskRoutes);
+
+module.exports = app;

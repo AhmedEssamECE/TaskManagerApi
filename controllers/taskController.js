@@ -1,7 +1,7 @@
 const Tasks = require("../models/taskModel");
 exports.getAllTasks = async (req, res, next) => {
   try {
-    const tasks = Tasks.find();
+    const tasks = await Tasks.find();
     res.status(200).json({
       status: "success",
       results: tasks.length,
@@ -12,11 +12,11 @@ exports.getAllTasks = async (req, res, next) => {
   } catch (err) {
     res.status(404).json({
       status: "failed",
-      message: err,
+      message: err.message,
     });
   }
 };
-exports.creatTask = async (req, res, next) => {
+exports.createTask = async (req, res, next) => {
   try {
     const newTask = await Tasks.create(req.body);
     res.status(201).json({
@@ -28,7 +28,7 @@ exports.creatTask = async (req, res, next) => {
   } catch (err) {
     res.status(404).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };

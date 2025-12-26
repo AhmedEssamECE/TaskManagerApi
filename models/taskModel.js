@@ -1,7 +1,7 @@
 const { Timestamp } = require("bson");
 const mongoose = require("mongoose");
 
-const taskModel = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, "Enter description for your task"],
@@ -15,6 +15,11 @@ const taskModel = new mongoose.Schema({
     default: Date.now(),
   },
   status: {
-    enum: ["Completed", "Ypcoming", "Overdue"],
+    type: String,
+    enum: ["Completed", "Upcoming", "Overdue"],
+    default: "Upcoming",
   },
 });
+
+taskModel = mongoose.model("Tasks", taskSchema);
+module.exports = taskModel;

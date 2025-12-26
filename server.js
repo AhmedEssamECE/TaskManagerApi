@@ -11,3 +11,6 @@ const DB = process.env.MONGODB_URL.replace(
 mongoose.connect(DB).then((connection) => {
   console.log("DB connection successful");
 });
+app.listen(3000, () => {
+  console.log(`App running on port 3000...`);
+});
